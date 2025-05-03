@@ -44,6 +44,7 @@ model User {
   name          String?
   email         String?   @unique
   password      String
+  role          Role      @default(USER)
   emailVerified DateTime? @map("email_verified")
   rememberToken String?   @map("remember_token")
   image         String?
@@ -60,4 +61,9 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+enum Role {
+  USER
+  ADMIN
 }

@@ -38,7 +38,8 @@ const authConfig: NextAuthConfig = {
                     name: user.name,
                     email: user.email,
                     image: user.image,
-                    emailVerified: user.emailVerified
+                    emailVerified: user.emailVerified,
+                    role: user.role
                 };
             }
         })
@@ -55,7 +56,8 @@ const authConfig: NextAuthConfig = {
             if (trigger === 'update' && session) {
                 token.name = session.name;
                 token.email = session.email;
-                token.emailVerified = session.emailVerified as Date | null;;
+                token.emailVerified = session.emailVerified as Date | null;
+                token.role = session.role;
             }
 
             if (user) {
@@ -64,6 +66,7 @@ const authConfig: NextAuthConfig = {
                 token.email = user.email;
                 token.image = user.image;
                 token.emailVerified = user.emailVerified as Date | null;
+                token.role = user.role;
             }
             return token;
         },
@@ -73,7 +76,8 @@ const authConfig: NextAuthConfig = {
                 session.user.name = token.name as string;
                 session.user.email = token.email as string;
                 session.user.image = token.image as string;
-                session.user.emailVerified = token.emailVerified as Date | null;;
+                session.user.emailVerified = token.emailVerified as Date | null;
+                session.user.role = token.role as string;
             }
             return session;
         }

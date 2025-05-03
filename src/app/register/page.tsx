@@ -13,11 +13,13 @@ import { Icon } from '@/components/ui/icon';
 import { registerUser } from '@/app/api/actions/registeruser';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 type RegisterForm = {
     name: string;
     email: string;
     password: string;
+    role: string;
     password_confirmation: string;
 };
 
@@ -31,6 +33,7 @@ export default function Register() {
         name: '',
         email: '',
         password: '',
+        role: 'USER',
         password_confirmation: '',
     });
 
@@ -57,6 +60,7 @@ export default function Register() {
                 name: '',
                 email: '',
                 password: '',
+                role: 'USER',
                 password_confirmation: '',
             });
 
@@ -164,7 +168,37 @@ export default function Register() {
                         <InputError message={state?.errors?.password_confirmation} />
                     </div>
 
-                    <Button type="submit" className="mt-2 w-full" tabIndex={5} disabled={pending} aria-busy={pending}>
+                    <div className="grid gap-2">
+                        <Label htmlFor="role">Tipo do Conta</Label>
+                        <Select
+                            required
+                            value={data.role}
+                            onValueChange={(value) => setData((prev) => ({ ...prev, role: value }))}
+                            disabled={pending}
+                        >
+                            <SelectTrigger
+                                id="role"
+                                name="role"
+                                title="Selecionar tipo de Conta"
+                                tabIndex={5}
+                            >
+                                <SelectValue placeholder="Tipo de Conta" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="USER">
+                                    Usuário
+                                </SelectItem>
+                                <SelectItem value="ADMIN">
+                                    Administrador
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <InputError message={state?.errors?.role} />
+                    </div>
+
+                    <input type="hidden" name="role" value={data.role} />
+
+                    <Button type="submit" className="mt-2 w-full" tabIndex={6} disabled={pending} aria-busy={pending}>
                         {pending && <LoaderCircle className="h-4 w-4 animate-spin" />}
                         Create account
                     </Button>
@@ -172,7 +206,7 @@ export default function Register() {
 
                 <div className="text-muted-foreground text-center text-sm">
                     Already have an account?&nbsp;&nbsp;
-                    <TextLink href="/login" tabIndex={6}>
+                    <TextLink href="/login" tabIndex={7}>
                         Log in
                     </TextLink>
                 </div>

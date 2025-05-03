@@ -6,6 +6,7 @@ export interface User {
     email: string;
     image?: string;
     emailVerified: Date | null;
+    role: string;
     [key: string]: unknown;
 }
 

@@ -1,4 +1,4 @@
-import { object, string } from 'zod';
+import { object, string, z } from 'zod';
 
 export const signInSchema = object({
     email: string({ required_error: "Email is required" })
@@ -17,6 +17,9 @@ export const signUpSchema = object({
         .email('Invalid email address'),
     password: string()
         .min(8, 'Password must be at least 8 characters long'),
+    role: z.enum(['USER', 'ADMIN'], {
+        errorMap: () => ({ message: 'Role must be either USER or ADMIN' }),
+    }),
     password_confirmation: string()
         .min(1, 'Please confirm your password')
 })

@@ -5,7 +5,7 @@ import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { User, type NavItem } from '@/types';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, UserCog, UserPlus, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 import Link from 'next/link';
 
@@ -14,6 +14,24 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: '/dashboard',
         icon: LayoutGrid,
+    },
+];
+
+const adminNavItems: NavItem[] = [
+    {
+        title: 'Administradores',
+        href: '/dashboard/auth/admins',
+        icon: UserCog,
+    },
+    {
+        title: 'Cadastrar Usuário',
+        href: '/dashboard/auth/admins/register',
+        icon: UserPlus,
+    },
+    {
+        title: 'Usuários',
+        href: '/dashboard/auth/admins/users',
+        icon: Users,
     },
 ];
 
@@ -31,6 +49,9 @@ const footerNavItems: NavItem[] = [
 ];
 
 export function AppSidebar({ user }: { user: User }) {
+    const isAdmin = user.role === 'ADMIN';
+
+    const navItems = isAdmin ? [...mainNavItems, ...adminNavItems] : mainNavItems;
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
@@ -46,7 +67,7 @@ export function AppSidebar({ user }: { user: User }) {
             </SidebarHeader>
 
             <SidebarContent>
-                <NavMain items={mainNavItems} />
+                <NavMain items={navItems} />
             </SidebarContent>
 
             <SidebarFooter>
