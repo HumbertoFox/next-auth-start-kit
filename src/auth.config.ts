@@ -55,7 +55,7 @@ const authConfig: NextAuthConfig = {
             if (trigger === 'update' && session) {
                 token.name = session.name;
                 token.email = session.email;
-                token.emailVerified = session.emailVerified as Date | null;;
+                token.emailVerified = session.emailVerified as Date | null;
             }
 
             if (user) {
@@ -73,7 +73,7 @@ const authConfig: NextAuthConfig = {
                 session.user.name = token.name as string;
                 session.user.email = token.email as string;
                 session.user.image = token.image as string;
-                session.user.emailVerified = token.emailVerified as Date | null;;
+                session.user.emailVerified = token.emailVerified as Date | null;
             }
             return session;
         }

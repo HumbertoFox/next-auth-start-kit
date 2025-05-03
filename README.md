@@ -487,15 +487,6 @@ AUTH_TRUST_HOST="true" **production**
 npx prisma migrate dev
 
 ```
-
----
-
-```bash
-
-npx prisma generate
-
-```
-
 ---
 
 ### Developed in:
