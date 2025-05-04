@@ -121,6 +121,18 @@ The login functionality of this app uses **Next.js 15 (App Router)**, **NextAuth
 - Authentication via `CredentialsProvider`
 - Password verification with `bcrypt-ts`
 - Sessions managed via JWT
+- User role = 'ADMIN' or 'USER'
+- Session time 5 min idle disconnects
+
+```bach
+
+    session: {
+        strategy: 'jwt',
+        maxAge: 5 * 60,
+        updateAge: 0
+    },
+
+```
 
 ---
 
