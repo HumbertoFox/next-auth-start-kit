@@ -44,7 +44,9 @@ const authConfig: NextAuthConfig = {
         })
     ],
     session: {
-        strategy: 'jwt'
+        strategy: 'jwt',
+        maxAge: 5 * 60,
+        updateAge: 0
     },
     pages: {
         signIn: '/login',
