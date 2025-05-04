@@ -33,7 +33,7 @@ New user registration uses **Next.js 15 (App Router)**, **Shadcn/ui** visual lay
 ### 🧩 Components and Features
 
 #### 1. Registration Form
-- Fields: `name`, `email`, `password`, `password_confirmation`
+- Fields: `name`, `email`, `role`, `password`, `password_confirmation`
 - Validation with Zod (client and server side)
 - Auto-focus email on error
 - Displaying success or error messages
