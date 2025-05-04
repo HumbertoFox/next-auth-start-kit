@@ -3,6 +3,7 @@ import AppLayout from '@/components/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
+import { prisma } from '@/lib/prisma';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -13,7 +14,8 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 export default async function Dashboard() {
     const session = await auth();
-    if (!session?.user) redirect('/login');
+    const user = await prisma.user.findUnique({ where: { id: session?.user.id } });
+    if (!session?.user || !user) redirect('/login');
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">

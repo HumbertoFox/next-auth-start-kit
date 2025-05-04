@@ -29,7 +29,7 @@ export async function loginUser(state: FormStateLoginUser, formData: FormData): 
     try {
         await signIn('credentials', { email, password, redirect: false });
 
-        return { message: 'authentication successful' };
+        return { message: 'authentication successful! Directing to Dashboard please wait...' };
     } catch (error) {
         if (error instanceof AuthError) {
             return { info: 'invalid credentials!' };

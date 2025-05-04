@@ -80,7 +80,7 @@ export default function Login() {
 
     useEffect(() => {
         if (session?.user) {
-            router.push('/');
+            router.push('/dashboard/logout');
         };
 
         if (state?.message) {
