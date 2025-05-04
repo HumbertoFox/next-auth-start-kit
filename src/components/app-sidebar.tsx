@@ -5,7 +5,7 @@ import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { User, type NavItem } from '@/types';
-import { BookOpen, Folder, LayoutGrid, UserCog, UserPlus, Users } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, UserRoundCog, UserRoundPlus, UsersRound } from 'lucide-react';
 import AppLogo from './app-logo';
 import Link from 'next/link';
 
@@ -19,19 +19,19 @@ const mainNavItems: NavItem[] = [
 
 const adminNavItems: NavItem[] = [
     {
-        title: 'Administradores',
-        href: '/dashboard/auth/admins',
-        icon: UserCog,
+        title: 'Administrators',
+        href: '/dashboard/admins',
+        icon: UserRoundCog,
     },
     {
-        title: 'Cadastrar Usuário',
-        href: '/dashboard/auth/admins/register',
-        icon: UserPlus,
+        title: 'Register User',
+        href: '/dashboard/admins/register',
+        icon: UserRoundPlus,
     },
     {
-        title: 'Usuários',
-        href: '/dashboard/auth/admins/users',
-        icon: Users,
+        title: 'Users',
+        href: '/dashboard/admins/users',
+        icon: UsersRound,
     },
 ];
 
